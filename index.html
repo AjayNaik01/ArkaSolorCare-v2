@@ -10,9 +10,9 @@
       theme: {
         extend: {
           colors: {
-            ink: '#09262c',
-            sage: '#718789',
-            pale: '#f4f6f4',
+            ink: '#0f172a',
+            sage: '#475569',
+            pale: '#f8fafc',
             line: '#dfe5e2',
             lemon: '#f8e84d'
           },
@@ -27,14 +27,14 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
   <style>
     html { scroll-behavior: smooth; }
-    body { margin: 0; background:#fff; color:#09262c; font-family:Inter,ui-sans-serif,system-ui,sans-serif; }
+    body { margin: 0; background:#fff; color:#0f172a; font-family:Inter,ui-sans-serif,system-ui,sans-serif; }
     * { box-sizing:border-box; }
 
     /* Custom Smooth Scrollbar */
     ::-webkit-scrollbar { width: 10px; }
-    ::-webkit-scrollbar-track { background: #f4f6f4; }
-    ::-webkit-scrollbar-thumb { background: #c1c9c7; border-radius: 10px; border: 2px solid #f4f6f4; }
-    ::-webkit-scrollbar-thumb:hover { background: #718789; }
+    ::-webkit-scrollbar-track { background: #f8fafc; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; border: 2px solid #f8fafc; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
     .container-x { width:min(1120px, calc(100% - 56px)); margin-inline:auto; }
     .eyebrow { font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:600; }
     .display { letter-spacing:-.055em; line-height:.96; }
@@ -83,7 +83,7 @@
     .mobile-menu-panel { transform:translateX(105%); box-shadow:-25px 0 60px rgba(0,0,0,.25); }
     .mobile-link { display:flex; align-items:center; justify-content:space-between; padding:18px 0; border-bottom:1px solid rgba(255,255,255,.10); font-size:22px; letter-spacing:-.03em; }
     .mobile-link span { color:#f8e84d; font-size:14px; }
-    .mobile-quote { margin-top:16px; padding:15px 18px; border:0; border-radius:999px; background:#f8e84d; color:#09262c; font-size:13px; font-weight:800; }
+    .mobile-quote { margin-top:16px; padding:15px 18px; border:0; border-radius:999px; background:#f8e84d; color:#0f172a; font-size:13px; font-weight:800; }
     .mobile-menu-btn { width:42px; height:42px; border:1px solid rgba(255,255,255,.28); border-radius:999px; background:rgba(9,38,44,.28); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; }
     .mobile-menu-btn span { display:block; width:17px; height:2px; border-radius:99px; background:#fff; transition:transform .35s ease, opacity .25s ease; }
     .mobile-menu-btn.active span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
@@ -155,7 +155,7 @@
     </div>
     <div id="mobileMenu" class="mobile-menu fixed inset-0 z-[1000] md:hidden">
       <div class="mobile-menu-backdrop absolute inset-0"></div>
-      <div class="mobile-menu-panel absolute right-0 top-0 h-full w-[86%] max-w-[360px] bg-[#09262c] px-7 pt-28 text-white">
+      <div class="mobile-menu-panel absolute right-0 top-0 h-full w-[86%] max-w-[360px] bg-[#0f172a] px-7 pt-28 text-white">
         <div class="eyebrow text-white/40">Navigate</div>
         <div class="mt-7 flex flex-col gap-1">
           <a href="#solutions" class="mobile-link">Solutions <span>↗</span></a>
@@ -187,8 +187,8 @@
       <div class="hero-art flex items-center justify-end relative min-h-[440px] self-stretch md:pr-6">
         <div class="hero-image-wrap relative h-[320px] w-full max-w-[480px] overflow-hidden rounded-[24px] border border-white/20 bg-white/5 shadow-[0_30px_80px_rgba(9,38,44,.40)] md:h-[420px]">
           <img src="assets/images/image_14.jpg" alt="Solar panels" class="hero-image h-full w-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#09262c]/80 via-transparent to-white/5"></div>
-          <div class="absolute bottom-6 left-6 rounded-full border border-white/30 bg-[#09262c]/60 px-5 py-2.5 text-[10px] font-bold tracking-[.15em] text-white backdrop-blur-md">CLEAN ENERGY</div>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a]/80 via-transparent to-white/5"></div>
+          <div class="absolute bottom-6 left-6 rounded-full border border-white/30 bg-[#0f172a]/60 px-5 py-2.5 text-[10px] font-bold tracking-[.15em] text-white backdrop-blur-md">CLEAN ENERGY</div>
         </div>
       </div>
     </div>
@@ -325,12 +325,12 @@
       <div class="grid items-stretch gap-8 md:grid-cols-[1fr_.82fr]">
         <form class="space-y-5" onsubmit="event.preventDefault(); alert('Thanks! Your quote request has been received.');">
           <div class="grid grid-cols-2 gap-4">
-            <label class="block text-[10px] uppercase tracking-[.12em] text-sage">First name<input required class="mt-2 w-full border-b-2 border-[#c7d0cd] bg-transparent py-3 text-sm font-medium placeholder:text-sage/80 outline-none transition focus:border-ink" /></label>
-            <label class="block text-[10px] uppercase tracking-[.12em] text-sage">Last name<input required class="mt-2 w-full border-b-2 border-[#c7d0cd] bg-transparent py-3 text-sm font-medium placeholder:text-sage/80 outline-none transition focus:border-ink" /></label>
+            <label class="block text-[10px] uppercase tracking-[.12em] text-sage">First name<input required class="mt-2 w-full border-b-2 border-[#cbd5e1] bg-transparent py-3 text-sm font-medium placeholder:text-sage/80 outline-none transition focus:border-ink" /></label>
+            <label class="block text-[10px] uppercase tracking-[.12em] text-sage">Last name<input required class="mt-2 w-full border-b-2 border-[#cbd5e1] bg-transparent py-3 text-sm font-medium placeholder:text-sage/80 outline-none transition focus:border-ink" /></label>
           </div>
-          <label class="block text-[10px] uppercase tracking-[.12em] text-sage">Email<input type="email" required class="mt-2 w-full border-b-2 border-[#c7d0cd] bg-transparent py-3 text-sm font-medium placeholder:text-sage/80 outline-none transition focus:border-ink" /></label>
-          <label class="block text-[10px] uppercase tracking-[.12em] text-sage">Phone<input class="mt-2 w-full border-b-2 border-[#c7d0cd] bg-transparent py-3 text-sm font-medium placeholder:text-sage/80 outline-none transition focus:border-ink" /></label>
-          <label class="block text-[10px] uppercase tracking-[.12em] text-sage">Tell us about your project<textarea rows="2" class="mt-2 w-full resize-none border-b-2 border-[#c7d0cd] bg-transparent py-3 text-sm font-medium placeholder:text-sage/80 outline-none transition focus:border-ink"></textarea></label>
+          <label class="block text-[10px] uppercase tracking-[.12em] text-sage">Email<input type="email" required class="mt-2 w-full border-b-2 border-[#cbd5e1] bg-transparent py-3 text-sm font-medium placeholder:text-sage/80 outline-none transition focus:border-ink" /></label>
+          <label class="block text-[10px] uppercase tracking-[.12em] text-sage">Phone<input class="mt-2 w-full border-b-2 border-[#cbd5e1] bg-transparent py-3 text-sm font-medium placeholder:text-sage/80 outline-none transition focus:border-ink" /></label>
+          <label class="block text-[10px] uppercase tracking-[.12em] text-sage">Tell us about your project<textarea rows="2" class="mt-2 w-full resize-none border-b-2 border-[#cbd5e1] bg-transparent py-3 text-sm font-medium placeholder:text-sage/80 outline-none transition focus:border-ink"></textarea></label>
           <button class="w-full rounded-full bg-lemon py-4 text-[10px] font-bold text-ink">REQUEST MY QUOTE →</button>
         </form>
         <div class="hidden md:block overflow-hidden"><img class="photo" src="assets/images/image_5.jpg" alt="Solar panels"></div>
