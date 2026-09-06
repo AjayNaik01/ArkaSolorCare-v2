@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Solvion — Power Your Future with Clean Energy</title>
+  <title>Arka Solar Care — Power Your Future with Clean Energy</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="apple-touch-icon" href="logo.png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -25,6 +27,7 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     html { scroll-behavior: smooth; }
     body { margin: 0; background:#fff; color:#0f172a; font-family:Inter,ui-sans-serif,system-ui,sans-serif; }
@@ -97,8 +100,39 @@
     .interactive-card::after { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(248,232,77,.16), transparent 34%); opacity:0; transition:opacity .25s ease; }
     .interactive-card:hover::after { opacity:1; }
     .card-shine { position:absolute; inset:-50%; pointer-events:none; background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,.22) 50%, transparent 65%); transform:translateX(-70%) rotate(8deg); opacity:0; }
-    .ripple { position:absolute; border-radius:50%; background:rgba(15,23,42,.12); pointer-events:none; transform:scale(0); }
     .section-marker { position:absolute; width:0.1875rem; height:0.1875rem; border-radius:50%; background:#f8e84d; opacity:.65; }
+
+    /* Energy Flow Connector & Solar Animations */
+    @keyframes flowPulse {
+      0% { transform: translateX(-100%); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateX(100%); opacity: 0; }
+    }
+    .energy-stream {
+      position: relative;
+      overflow: hidden;
+    }
+    .energy-stream::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, transparent, #2563eb, #f8e84d, transparent);
+      animation: flowPulse 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    @keyframes slowSpin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .spin-slow {
+      animation: slowSpin 24s linear infinite;
+    }
+    @keyframes sunGlow {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px rgba(248, 232, 77, 0.4)); }
+      50% { transform: scale(1.06); filter: drop-shadow(0 0 18px rgba(248, 232, 77, 0.8)); }
+    }
+    .sun-glow {
+      animation: sunGlow 3s ease-in-out infinite;
+    }
 
 
     /* Sticky navigation + mobile menu */
@@ -253,326 +287,605 @@
     </div>
   </header>
 
-  <!-- WHY SOLAR / TRUST (Clean, Human & Grounded) -->
-  <section id="why" class="relative pt-24 pb-28 md:pt-32 md:pb-36 bg-white overflow-hidden">
+  <!-- 1. WHY SOLAR? (Immediate continuation from Hero) -->
+  <section id="why" class="py-24 md:py-32 bg-white relative overflow-hidden">
+    <div class="container-x">
+      <div class="grid items-center gap-12 lg:gap-16 md:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          <div class="eyebrow text-[#2563eb] mb-4">Why Solar Energy</div>
+          <h2 class="text-[2.5rem] md:text-[3.5rem] font-medium leading-[1.02] tracking-[-.045em] text-[#0f172a]">
+            Solar that makes sense for your home.
+          </h2>
+          <p class="mt-6 text-[0.875rem] md:text-[1rem] leading-[1.7] text-[#64748b] max-w-[32rem]">
+            Generate your own clean electricity, eliminate surging power tariffs, and enjoy dependable, uninterrupted power year-round tailored to your household usage.
+          </p>
+          
+          <!-- 3 Compact Statistics -->
+          <div class="grid grid-cols-3 gap-6 pt-8 mt-10 border-t border-[#e2e8f0]">
+            <div>
+              <div class="text-2xl md:text-3xl font-medium tracking-tight text-[#0f172a]">25<span class="text-[#2563eb]">+</span> <span class="text-base font-normal text-[#64748b]">Yrs</span></div>
+              <div class="mt-1.5 text-[0.6875rem] uppercase tracking-wider text-[#64748b] font-semibold">Panel lifespan</div>
+            </div>
+            <div>
+              <div class="text-2xl md:text-3xl font-medium tracking-tight text-[#0f172a]">₹2,000<span class="text-[#2563eb]">+</span></div>
+              <div class="mt-1.5 text-[0.6875rem] uppercase tracking-wider text-[#64748b] font-semibold">Monthly savings*</div>
+            </div>
+            <div>
+              <div class="text-2xl md:text-3xl font-medium tracking-tight text-[#0f172a]">10<span class="text-[#2563eb]">+</span> <span class="text-base font-normal text-[#64748b]">Yrs</span></div>
+              <div class="mt-1.5 text-[0.6875rem] uppercase tracking-wider text-[#64748b] font-semibold">Warranty cover</div>
+            </div>
+          </div>
+        </div>
 
-    <!-- Decorative rooftop landscape — clean centered watermark (+50% total size) -->
-    <div class="absolute bottom-0 left-0 w-full h-[18.75rem] md:h-[23.5rem] pointer-events-none select-none z-0"
-         style="
-           opacity: 0.9;
-           background-image: url('assets/images/user_solar_rooftop.png');
-           background-repeat: no-repeat;
-           background-position: center bottom;
-           background-size: contain;
-           mix-blend-mode: multiply;
-           filter: grayscale(50%) contrast(1.1);
-         ">
+        <!-- Right: Large realistic image of a Udupi house with rooftop solar -->
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl group border border-[#e2e8f0]">
+          <div class="h-[22rem] md:h-[28rem] overflow-hidden">
+            <img src="assets/images/udupi_family.jpg" 
+                 alt="Residential solar installation in coastal Karnataka home" 
+                 class="w-full h-full object-cover object-center transition duration-700 group-hover:scale-105" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. “HOW SOLAR WORKS” (Interactive Visual Flow matching user reference) -->
+  <section id="how-it-works" class="py-20 md:py-28 bg-[#f8fafc] relative overflow-hidden border-t border-b border-[#e2e8f0]/60">
+    <div class="container-x">
+      <div class="grid lg:grid-cols-[0.75fr_1.25fr] gap-10 lg:gap-12 items-center">
+        
+        <!-- Left: Heading -->
+        <div>
+          <div class="eyebrow text-[#2563eb] mb-3">HOW IT WORKS</div>
+          <h2 class="text-[2.25rem] md:text-[3rem] font-medium leading-[1.06] tracking-[-.045em] text-[#0f172a]">
+            From sunlight to power.<br/>
+            It's that simple.
+          </h2>
+        </div>
+
+        <!-- Right: Flow matching user reference image exactly (no circular background, large icons) -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-8 sm:gap-4">
+          
+          <!-- Step 1: Sunlight -->
+          <div class="text-center group flex-1">
+            <div class="h-20 md:h-24 flex items-center justify-center mx-auto mb-3 transition duration-300 group-hover:scale-110">
+              <!-- Large Sun Illustration -->
+              <svg class="w-16 h-16 md:w-20 md:h-20" viewBox="0 0 48 48" fill="none">
+                <!-- Sun Rays -->
+                <circle cx="24" cy="5" r="2.5" fill="#FBBF24" />
+                <circle cx="24" cy="43" r="2.5" fill="#FBBF24" />
+                <circle cx="5" cy="24" r="2.5" fill="#FBBF24" />
+                <circle cx="43" cy="24" r="2.5" fill="#FBBF24" />
+                <circle cx="10.5" cy="10.5" r="2.5" fill="#FBBF24" />
+                <circle cx="37.5" cy="37.5" r="2.5" fill="#FBBF24" />
+                <circle cx="10.5" cy="37.5" r="2.5" fill="#FBBF24" />
+                <circle cx="37.5" cy="10.5" r="2.5" fill="#FBBF24" />
+                <!-- Sun Core -->
+                <circle cx="24" cy="24" r="12" fill="#FBBF24" />
+                <circle cx="24" cy="24" r="10" fill="#F59E0B" />
+              </svg>
+            </div>
+            <h3 class="text-base md:text-[1.0625rem] font-bold text-[#0f172a]">Sunlight</h3>
+            <p class="text-xs text-[#64748b] mt-0.5 font-medium">(Free & abundant)</p>
+          </div>
+
+          <!-- Arrow 1 -->
+          <div class="text-slate-300 font-medium text-2xl hidden sm:block">→</div>
+
+          <!-- Step 2: Solar Panels -->
+          <div class="text-center group flex-1">
+            <div class="h-20 md:h-24 flex items-center justify-center mx-auto mb-3 transition duration-300 group-hover:scale-110">
+              <!-- Large Angled Solar Panel Array Illustration -->
+              <svg class="w-16 h-16 md:w-20 md:h-20" viewBox="0 0 48 48" fill="none">
+                <!-- Stand Base -->
+                <path d="M19 37h10M24 31v6" stroke="#334155" stroke-width="2.5" stroke-linecap="round" />
+                <ellipse cx="24" cy="37" rx="9" ry="2.2" fill="#cbd5e1" />
+                <!-- Perspective Solar Panel -->
+                <polygon points="9,29 14,11 34,11 39,29" fill="#1e3a8a" stroke="#1e293b" stroke-width="2" stroke-linejoin="round" />
+                <!-- Grid Lines (Columns) -->
+                <line x1="20" y1="11" x2="19" y2="29" stroke="#60a5fa" stroke-width="1.4" />
+                <line x1="28" y1="11" x2="29" y2="29" stroke="#60a5fa" stroke-width="1.4" />
+                <!-- Grid Lines (Rows) -->
+                <line x1="12" y1="17" x2="36" y2="17" stroke="#60a5fa" stroke-width="1.4" />
+                <line x1="10.5" y1="23" x2="37.5" y2="23" stroke="#60a5fa" stroke-width="1.4" />
+              </svg>
+            </div>
+            <h3 class="text-base md:text-[1.0625rem] font-bold text-[#0f172a]">Solar Panels</h3>
+            <p class="text-xs text-[#64748b] mt-0.5 font-medium">(Capture sunlight)</p>
+          </div>
+
+          <!-- Arrow 2 -->
+          <div class="text-slate-300 font-medium text-2xl hidden sm:block">→</div>
+
+          <!-- Step 3: Inverter -->
+          <div class="text-center group flex-1">
+            <div class="h-20 md:h-24 flex items-center justify-center mx-auto mb-3 transition duration-300 group-hover:scale-110">
+              <!-- Large Smart Inverter Unit -->
+              <svg class="w-16 h-16 md:w-20 md:h-20" viewBox="0 0 48 48" fill="none">
+                <!-- Unit Body -->
+                <rect x="13" y="7" width="22" height="32" rx="4.5" fill="#ffffff" stroke="#1e293b" stroke-width="2.2" />
+                <!-- Inner Screen Bezel -->
+                <rect x="17.5" y="12" width="13" height="16" rx="2" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.6" />
+                <!-- Gauge / Wave Display -->
+                <circle cx="24" cy="20" r="4.5" fill="#dbeafe" stroke="#2563eb" stroke-width="1.4" />
+                <path d="M21.5 20c1-1.4 2-1.4 3 0s2 1.4 3 0" stroke="#2563eb" stroke-width="1.4" stroke-linecap="round" />
+                <!-- Bottom Connector Terminals -->
+                <line x1="20" y1="39" x2="20" y2="43" stroke="#64748b" stroke-width="2.4" stroke-linecap="round" />
+                <line x1="28" y1="39" x2="28" y2="43" stroke="#64748b" stroke-width="2.4" stroke-linecap="round" />
+              </svg>
+            </div>
+            <h3 class="text-base md:text-[1.0625rem] font-bold text-[#0f172a]">Inverter</h3>
+            <p class="text-xs text-[#64748b] mt-0.5 font-medium">(Converts to AC)</p>
+          </div>
+
+          <!-- Arrow 3 -->
+          <div class="text-slate-300 font-medium text-2xl hidden sm:block">→</div>
+
+          <!-- Step 4: Your Home -->
+          <div class="text-center group flex-1">
+            <div class="h-20 md:h-24 flex items-center justify-center mx-auto mb-3 transition duration-300 group-hover:scale-110">
+              <!-- Large Modern Solar Home Illustration -->
+              <svg class="w-16 h-16 md:w-20 md:h-20" viewBox="0 0 48 48" fill="none">
+                <!-- House Roof (Deep Navy) -->
+                <path d="M7 21L24 8l17 13" stroke="#0f172a" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
+                <!-- House Body -->
+                <rect x="11" y="20" width="26" height="20" rx="1.5" fill="#f8fafc" stroke="#0f172a" stroke-width="2.2" />
+                <!-- Rooftop Solar Panel Accent -->
+                <polygon points="14,19 24,11 29,14.5 19,22.5" fill="#2563eb" />
+                <!-- Lit Front Door (Warm Amber) -->
+                <rect x="21" y="28" width="6.5" height="12" fill="#f59e0b" stroke="#d97706" stroke-width="1.4" />
+                <circle cx="26" cy="34" r="0.9" fill="#ffffff" />
+                <!-- Lit Window -->
+                <rect x="14" y="24" width="4.5" height="5.5" rx="0.5" fill="#fef08a" stroke="#ca8a04" stroke-width="1.2" />
+              </svg>
+            </div>
+            <h3 class="text-base md:text-[1.0625rem] font-bold text-[#0f172a]">Your Home</h3>
+            <p class="text-xs text-[#64748b] mt-0.5 font-medium">(Powered by clean energy)</p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SOLAR BENEFITS — BIG VISUAL CARDS (Editorial Layout) -->
+  <section class="py-24 md:py-32 bg-white relative overflow-hidden">
+    <div class="container-x">
+      <div class="mb-14 max-w-[36rem]">
+        <div class="eyebrow text-[#2563eb]">Engineered for High Performance</div>
+        <h2 class="mt-4 text-[2.375rem] md:text-[3.25rem] font-medium leading-[1.04] tracking-[-.045em] text-[#0f172a]">
+          Solar benefits,<br/>built for everyday living.
+        </h2>
+      </div>
+
+      <div class="space-y-8">
+        
+        <!-- Benefit Card 01 (Text Left, Image Right) -->
+        <article class="bg-[#f8fafc] rounded-2xl border border-[#e2e8f0] p-8 md:p-12 grid md:grid-cols-[1.2fr_0.8fr] gap-8 items-center shadow-sm hover:shadow-md transition">
+          <div>
+            <span class="text-[0.75rem] font-bold tracking-widest text-[#2563eb] uppercase">01 / Cost Reduction</span>
+            <h3 class="mt-3 text-2xl md:text-3xl font-medium tracking-tight text-[#0f172a]">LOWER ELECTRICITY BILLS</h3>
+            <p class="mt-4 text-[0.875rem] leading-[1.7] text-[#64748b]">
+              Generate your own clean power every morning. Slash your monthly utility expenses by up to 80% and run heavy appliances, ACs, and pumps freely without worrying about tariff surges.
+            </p>
+            <div class="mt-6 flex items-center gap-3 text-xs font-semibold text-[#0f172a]">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span>State Grid Bi-directional Net Metering Support</span>
+            </div>
+          </div>
+          <div class="h-60 md:h-72 rounded-xl overflow-hidden border border-[#e2e8f0] shadow-sm bg-white">
+            <img src="assets/images/4.jpg" alt="Solar powered home" class="w-full h-full object-cover transition duration-500 hover:scale-105" />
+          </div>
+        </article>
+
+        <!-- Benefit Card 02 (Image Left, Text Right) -->
+        <article class="bg-[#f8fafc] rounded-2xl border border-[#e2e8f0] p-8 md:p-12 grid md:grid-cols-[0.8fr_1.2fr] gap-8 items-center shadow-sm hover:shadow-md transition">
+          <div class="order-2 md:order-1 h-60 md:h-72 rounded-xl overflow-hidden border border-[#e2e8f0] shadow-sm bg-white">
+            <img src="assets/images/hero_panel_card.jpg" alt="Weatherproof solar panels" class="w-full h-full object-cover transition duration-500 hover:scale-105" />
+          </div>
+          <div class="order-1 md:order-2">
+            <span class="text-[0.75rem] font-bold tracking-widest text-[#2563eb] uppercase">02 / Durability</span>
+            <h3 class="mt-3 text-2xl md:text-3xl font-medium tracking-tight text-[#0f172a]">ALL-WEATHER DURABILITY</h3>
+            <p class="mt-4 text-[0.875rem] leading-[1.7] text-[#64748b]">
+              Engineered for extreme reliability across diverse Indian climates. Tier-1 monocrystalline panels with anodised corrosion-proof aluminium structures built to withstand heavy monsoons, intense heat, and high winds.
+            </p>
+            <div class="mt-6 flex items-center gap-3 text-xs font-semibold text-[#0f172a]">
+              <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+              <span>25-Year Performance & Structural Integrity Warranty</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Benefit Card 03 (Text Left, Image Right) -->
+        <article class="bg-[#f8fafc] rounded-2xl border border-[#e2e8f0] p-8 md:p-12 grid md:grid-cols-[1.2fr_0.8fr] gap-8 items-center shadow-sm hover:shadow-md transition">
+          <div>
+            <span class="text-[0.75rem] font-bold tracking-widest text-[#2563eb] uppercase">03 / Turnkey Service</span>
+            <h3 class="mt-3 text-2xl md:text-3xl font-medium tracking-tight text-[#0f172a]">COMPLETE SOLAR SERVICE</h3>
+            <p class="mt-4 text-[0.875rem] leading-[1.7] text-[#64748b]">
+              From your initial rooftop survey and PM Surya Ghar central subsidy documentation to certified installation and ongoing maintenance care — our professional engineering team manages the entire process end-to-end.
+            </p>
+            <div class="mt-6 flex items-center gap-3 text-xs font-semibold text-[#0f172a]">
+              <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+              <span>100% Paperwork & Direct Subsidy Assistance</span>
+            </div>
+          </div>
+          <div class="h-60 md:h-72 rounded-xl overflow-hidden border border-[#e2e8f0] shadow-sm bg-white">
+            <img src="assets/images/trust_solar_bg.jpg" alt="Solar technician installation" class="w-full h-full object-cover transition duration-500 hover:scale-105" />
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. RESIDENTIAL SOLAR CALCULATOR (Dark Navy Interactive Section) -->
+  <section id="calculator" class="py-24 md:py-32 bg-[#0f172a] text-white relative overflow-hidden">
+    <div class="container-x relative z-10">
+      <div class="grid lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-16 items-center">
+        
+        <div>
+          <div class="eyebrow text-[#f8e84d] mb-3">Live Savings Estimator</div>
+          <h2 class="text-[2.5rem] md:text-[3.375rem] font-medium leading-[1.02] tracking-[-.045em]">
+            How much could you save with solar?
+          </h2>
+          <p class="mt-5 text-[0.875rem] md:text-[1rem] leading-6 text-white/70">
+            Adjust your monthly electricity spend and home configuration to see your recommended solar plant size and estimated monthly savings.
+          </p>
+          
+          <div class="mt-8 space-y-4 text-xs text-white/60">
+            <div class="flex items-center gap-2.5"><span class="text-[#f8e84d]">✓</span> Real-time estimates calibrated for Karnataka MESCOM/BESCOM tariffs</div>
+            <div class="flex items-center gap-2.5"><span class="text-[#f8e84d]">✓</span> Eligible for PM Surya Ghar central subsidies up to ₹78,000</div>
+          </div>
+        </div>
+
+        <!-- Calculator Interactive Card -->
+        <div class="bg-[#1e293b] p-8 md:p-10 rounded-2xl border border-white/10 shadow-2xl">
+          
+          <!-- Monthly Bill Slider -->
+          <div class="mb-8">
+            <div class="flex justify-between items-center mb-3">
+              <label class="text-xs uppercase tracking-wider text-white/60 font-semibold">Monthly electricity bill</label>
+              <span id="bill-display" class="text-2xl font-bold text-[#f8e84d]">₹ 3,000</span>
+            </div>
+            <input id="bill-slider" type="range" min="1000" max="15000" step="500" value="3000" 
+                   class="w-full h-2 bg-white/20 rounded-lg appearance-none cursor-pointer accent-[#f8e84d]" />
+            <div class="flex justify-between text-[0.6875rem] text-white/40 mt-1.5 font-medium">
+              <span>₹1,000</span>
+              <span>₹8,000</span>
+              <span>₹15,000+</span>
+            </div>
+          </div>
+
+          <!-- Home Type Selector -->
+          <div class="mb-8">
+            <label class="block text-xs uppercase tracking-wider text-white/60 font-semibold mb-3">Home Type</label>
+            <div class="grid grid-cols-3 gap-3">
+              <button type="button" class="home-type-btn py-3 rounded-xl border border-white/15 text-xs font-semibold hover:border-white transition active" data-type="2bhk">2 BHK</button>
+              <button type="button" class="home-type-btn py-3 rounded-xl border border-[#f8e84d] bg-[#f8e84d]/10 text-[#f8e84d] text-xs font-semibold transition" data-type="3bhk">3 BHK</button>
+              <button type="button" class="home-type-btn py-3 rounded-xl border border-white/15 text-xs font-semibold hover:border-white transition" data-type="4bhk">4 BHK / Villa</button>
+            </div>
+          </div>
+
+          <!-- Live Output Grid -->
+          <div class="grid grid-cols-2 gap-4 p-5 bg-[#0f172a] rounded-xl border border-white/10 mb-8">
+            <div>
+              <div class="text-[0.6875rem] uppercase tracking-wider text-white/50">Recommended system</div>
+              <div id="calc-system" class="text-2xl font-bold text-white mt-1">3 kW</div>
+            </div>
+            <div>
+              <div class="text-[0.6875rem] uppercase tracking-wider text-white/50">Estimated savings</div>
+              <div id="calc-savings" class="text-2xl font-bold text-[#f8e84d] mt-1">₹2,400 <span class="text-xs font-normal text-white/60">/ month</span></div>
+            </div>
+          </div>
+
+          <!-- Action Button -->
+          <a href="#quote" class="w-full block text-center rounded-full bg-[#f8e84d] py-4 text-xs font-bold text-[#0f172a] tracking-wider uppercase shadow-lg hover:scale-[1.02] transition">
+            GET MY SOLAR ESTIMATE →
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. REGIONAL TRUST & CAPABILITY (Full-Width Cinematic Section) -->
+  <section class="relative py-28 md:py-36 bg-[#0f172a] text-white overflow-hidden">
+    <!-- Cinematic Background -->
+    <div class="absolute inset-0 z-0">
+      <img src="assets/images/udupi_community.jpg" 
+           alt="Solar powered residential community" 
+           class="w-full h-full object-cover object-center" />
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0f172a]/95 via-[#0f172a]/80 to-[#0f172a]/60"></div>
     </div>
 
     <div class="container-x relative z-10">
-      <!-- Heading matching reference -->
-      <div class="mb-14 max-w-[46rem]">
-        <h2 id="trust-heading" class="text-[2.5rem] md:text-[3.5rem] font-medium leading-[1.02] tracking-[-.045em] text-[#0f172a]">
-          Your Energy, Simplified.<br/>
-          <span class="text-[#2563eb] font-normal">everyday life.</span>
+      <div class="max-w-[40rem]">
+        <div class="eyebrow text-[#f8e84d] mb-4">Statewide Engineering & Service</div>
+        <h2 class="text-[2.5rem] md:text-[3.5rem] font-medium leading-[1.02] tracking-[-.045em]">
+          Powering homes & businesses across Karnataka.
         </h2>
-      </div>
-
-      <!-- 4 Clean Reference Cards Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-
-        <!-- Card 1: Why Go Solar -->
-        <article class="trust-card-clean trust-card-anim p-7 bg-[#f8fafc] border border-[#e2e8f0] rounded-2xl transition duration-300 hover:bg-white hover:border-[#2563eb]/40 hover:-translate-y-1.5 hover:shadow-lg">
-          <div class="w-10 h-10 flex items-center justify-center rounded-xl bg-white shadow-sm border border-slate-100 mb-5 text-[#2563eb]">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="4"></circle>
-              <path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"></path>
-            </svg>
-          </div>
-          <h3 class="text-[1.0625rem] font-semibold text-[#0f172a] tracking-tight">Why Go Solar</h3>
-          <p class="mt-2.5 text-[0.75rem] leading-[1.65] text-[#64748b]">
-            Sun energy and dependable clean power designed for everyday household needs.
-          </p>
-        </article>
-
-        <!-- Card 2: Leaf Battery -->
-        <article class="trust-card-clean trust-card-anim p-7 bg-[#f8fafc] border border-[#e2e8f0] rounded-2xl transition duration-300 hover:bg-white hover:border-[#2563eb]/40 hover:-translate-y-1.5 hover:shadow-lg">
-          <div class="w-10 h-10 flex items-center justify-center rounded-xl bg-white shadow-sm border border-slate-100 mb-5 text-[#2563eb]">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M11 20A7 7 0 0 1 4 13a7 7 0 0 1 7-7c5 0 9 4 9 9v1a4 4 0 0 1-4 4h-5z"></path>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M11 13l4-4"></path>
-            </svg>
-          </div>
-          <h3 class="text-[1.0625rem] font-semibold text-[#0f172a] tracking-tight">Leaf Battery</h3>
-          <p class="mt-2.5 text-[0.75rem] leading-[1.65] text-[#64748b]">
-            High-efficiency solar & smart storage built for maximum energy resilience.
-          </p>
-        </article>
-
-        <!-- Card 3: Rupee Return -->
-        <article class="trust-card-clean trust-card-anim p-7 bg-[#f8fafc] border border-[#e2e8f0] rounded-2xl transition duration-300 hover:bg-white hover:border-[#2563eb]/40 hover:-translate-y-1.5 hover:shadow-lg">
-          <div class="w-10 h-10 flex items-center justify-center rounded-xl bg-white shadow-sm border border-slate-100 mb-5 text-[#2563eb]">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 3h12M6 8h12M6 13l6-5M6 13h4a4 4 0 0 0 0-8M10 13l6 8"></path>
-            </svg>
-          </div>
-          <h3 class="text-[1.0625rem] font-semibold text-[#0f172a] tracking-tight">Rupee Return</h3>
-          <p class="mt-2.5 text-[0.75rem] leading-[1.65] text-[#64748b]">
-            Reduce power bills and secure high guaranteed returns from daily clean generation.
-          </p>
-        </article>
-
-        <!-- Card 4: Calendar Check -->
-        <article class="trust-card-clean trust-card-anim p-7 bg-[#f8fafc] border border-[#e2e8f0] rounded-2xl transition duration-300 hover:bg-white hover:border-[#2563eb]/40 hover:-translate-y-1.5 hover:shadow-lg">
-          <div class="w-10 h-10 flex items-center justify-center rounded-xl bg-white shadow-sm border border-slate-100 mb-5 text-[#2563eb]">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-              <rect x="3" y="4" width="18" height="18" rx="3" stroke-linecap="round"></rect>
-              <path stroke-linecap="round" d="M16 2v4M8 2v4M3 10h18"></path>
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 16l2 2 4-4"></path>
-            </svg>
-          </div>
-          <h3 class="text-[1.0625rem] font-semibold text-[#0f172a] tracking-tight">Calendar Check</h3>
-          <p class="mt-2.5 text-[0.75rem] leading-[1.65] text-[#64748b]">
-            Fast 1-day installation with complete subsidy assistance and lifetime care.
-          </p>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- BUILT ON TRUST -->
-  <section style="background:#f8fafc;" class="py-28 md:py-32">
-    <div class="container-x grid items-center gap-16 md:grid-cols-[1fr_.78fr]">
-      <div>
-        <div class="eyebrow reveal" style="color:#2563eb;">Built on trust. Powered by innovation.</div>
-        <h2 class="mt-5 max-w-[36.875rem] text-[2.5rem] md:text-[3.375rem] font-medium leading-[.98] tracking-[-.05em] reveal" style="color:#0f172a;">
-          Clean power,<br/><span style="color:#2563eb;">made simple.</span>
-        </h2>
-        <p class="mt-7 max-w-[37.5rem] text-[0.8125rem] leading-6 reveal" style="color:#64748b;">
-          From the first conversation to installation and beyond, our process is designed around clarity,
-          quality and dependable support.
+        <p class="mt-6 text-[0.875rem] md:text-[1rem] leading-[1.7] text-white/80">
+          From independent villas and urban rooftops to commercial installations, our custom solar plants are engineered for maximum generation, seamless grid net-metering, and long-term durability.
         </p>
-        <div class="mt-8 space-y-5 text-[0.75rem]" style="color:#0f172a;">
-          <div class="flex gap-4 pt-4 reveal" style="border-top:1px solid #e2e8f0;"><span class="font-bold">01</span><span>Understand your home, business and energy goals.</span></div>
-          <div class="flex gap-4 pt-4 reveal" style="border-top:1px solid #e2e8f0;"><span class="font-bold">02</span><span>Design a solar system around your actual usage.</span></div>
-          <div class="flex gap-4 pt-4 reveal" style="border-top:1px solid #e2e8f0;"><span class="font-bold">03</span><span>Install with care and keep performance visible.</span></div>
-        </div>
-      </div>
-      <div class="relative h-[26.25rem] overflow-hidden">
-        <img class="photo" src="assets/images/image_8.jpg" alt="Solar installation" />
-        <div class="absolute bottom-5 left-5 p-5" style="background:#f8fafc;">
-          <div class="text-[0.5625rem] uppercase tracking-[.18em]" style="color:#2563eb;">Installation quality</div>
-          <div class="mt-2 text-lg font-medium" style="color:#0f172a;">Built to perform.</div>
+
+        <!-- Location Tags -->
+        <div class="mt-8 flex flex-wrap gap-2.5">
+          <span class="px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-xs font-medium border border-white/20">Bengaluru</span>
+          <span class="px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-xs font-medium border border-white/20">Mangaluru</span>
+          <span class="px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-xs font-medium border border-white/20">Udupi</span>
+          <span class="px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-xs font-medium border border-white/20">Mysuru</span>
+          <span class="px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-xs font-medium border border-white/20">Hubballi</span>
+          <span class="px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-xs font-medium border border-white/20">Shivamogga</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SOLUTIONS -->
-  <section id="solutions" class="py-24 text-white" style="background:#0f172a;">
+  <!-- 6. INSTALLATION PROCESS (Progress Timeline) -->
+  <section class="py-24 md:py-32 bg-white relative overflow-hidden">
     <div class="container-x">
-      <div class="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+      <div class="text-center max-w-[36rem] mx-auto mb-16">
+        <div class="eyebrow text-[#2563eb]">End-to-End Care</div>
+        <h2 class="mt-4 text-[2.5rem] md:text-[3.5rem] font-medium leading-[1.02] tracking-[-.045em] text-[#0f172a]">
+          Your solar journey, simplified.
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+        
+        <!-- Step 1 -->
+        <div class="relative">
+          <div class="text-3xl font-bold text-[#2563eb] mb-3">01</div>
+          <h3 class="text-base font-bold uppercase tracking-wider text-[#0f172a]">CONSULTATION</h3>
+          <p class="mt-2 text-[0.8125rem] leading-6 text-[#64748b]">
+            Free initial assessment of your rooftop space, monthly energy consumption, and shadow analysis.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative">
+          <div class="text-3xl font-bold text-[#2563eb] mb-3">02</div>
+          <h3 class="text-base font-bold uppercase tracking-wider text-[#0f172a]">SITE SURVEY</h3>
+          <p class="mt-2 text-[0.8125rem] leading-6 text-[#64748b]">
+            Engineers design your custom structural layout and file for PM Surya Ghar subsidy approvals.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative">
+          <div class="text-3xl font-bold text-[#2563eb] mb-3">03</div>
+          <h3 class="text-base font-bold uppercase tracking-wider text-[#0f172a]">INSTALLATION</h3>
+          <p class="mt-2 text-[0.8125rem] leading-6 text-[#64748b]">
+            Fast 1-day safe rooftop mounting and electrical wiring by certified local technicians.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="relative">
+          <div class="text-3xl font-bold text-[#2563eb] mb-3">04</div>
+          <h3 class="text-base font-bold uppercase tracking-wider text-[#0f172a]">POWER ON</h3>
+          <p class="mt-2 text-[0.8125rem] leading-6 text-[#64748b]">
+            Net-meter grid sync with MESCOM, live app tracking, and ongoing panel cleaning maintenance.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. REAL INSTALLATION SHOWCASE (Gallery Grid) -->
+  <section id="solutions" class="py-24 md:py-32 bg-[#f8fafc] relative overflow-hidden">
+    <div class="container-x">
+      <div class="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-12">
         <div>
-          <div class="eyebrow reveal" style="color:#f8e84d;">Powering homes and businesses with clean energy</div>
-          <h2 class="mt-5 text-[2.375rem] md:text-[3.25rem] font-medium leading-[1] tracking-[-.05em] reveal">Solutions for<br/>every <span class="text-lemon">space.</span></h2>
+          <div class="eyebrow text-[#2563eb]">Proven Projects</div>
+          <h2 class="mt-3 text-[2.375rem] md:text-[3.25rem] font-medium leading-[1.04] tracking-[-.045em] text-[#0f172a]">
+            Real Installations.
+          </h2>
         </div>
-        <p class="max-w-[21.875rem] text-[0.75rem] leading-5 reveal" style="color:rgba(255,255,255,.6);">Whether you're looking to power a family home, a growing business, or a larger site, there's a system for you.</p>
+        <p class="text-xs font-semibold text-[#64748b] tracking-wider uppercase">
+          Residential & Commercial Solar Solutions
+        </p>
       </div>
-      <div class="mt-12 grid gap-4 md:grid-cols-3">
-        <article class="solution-card interactive-card group p-4 reveal transition-all duration-300 hover:-translate-y-1" style="background:#1e293b;">
-          <div class="relative h-[13.125rem] overflow-hidden rounded-sm"><img class="photo transition duration-700 group-hover:scale-105" src="assets/images/image_12.jpg" alt="Residential solar"><div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div></div>
-          <div class="px-1 pt-5">
-            <div class="eyebrow text-lemon">01 / residential</div>
-            <h3 class="mt-2 text-xl">Home solar</h3>
-            <p class="mt-3 text-[0.6875rem] leading-5" style="color:rgba(255,255,255,.55);">Own your energy, protect your budget and make your home more efficient.</p>
+
+      <!-- Asymmetric Photo Grid -->
+      <div class="grid md:grid-cols-[1.3fr_0.7fr] gap-6">
+        <!-- Large House Photo -->
+        <div class="relative h-[24rem] md:h-[32rem] rounded-2xl overflow-hidden border border-[#e2e8f0] shadow-md group">
+          <img src="assets/images/image_14.jpg" alt="Large rooftop solar installation" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
+          <div class="absolute bottom-4 left-4 bg-[#0f172a]/90 backdrop-blur-md px-4 py-2 rounded-lg text-white text-xs font-medium">
+            5 kW High-Efficiency Residential Rooftop
           </div>
-        </article>
-        <article class="solution-card interactive-card group p-4 reveal transition-all duration-300 hover:-translate-y-1" style="background:#1e293b;">
-          <div class="relative h-[13.125rem] overflow-hidden rounded-sm"><img class="photo transition duration-700 group-hover:scale-105" src="assets/images/image_6.jpg" alt="Commercial solar"><div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div></div>
-          <div class="px-1 pt-5">
-            <div class="eyebrow text-lemon">02 / commercial</div>
-            <h3 class="mt-2 text-xl">Business solar</h3>
-            <p class="mt-3 text-[0.6875rem] leading-5" style="color:rgba(255,255,255,.55);">Turn unused roof space into a strategic asset for your business.</p>
-          </div>
-        </article>
-        <article class="solution-card interactive-card group p-4 reveal transition-all duration-300 hover:-translate-y-1" style="background:#1e293b;">
-          <div class="relative h-[13.125rem] overflow-hidden rounded-sm"><img class="photo transition duration-700 group-hover:scale-105" src="assets/images/image_9.jpg" alt="Large solar field"><div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div></div>
-          <div class="px-1 pt-5">
-            <div class="eyebrow text-lemon">03 / utility</div>
-            <h3 class="mt-2 text-xl">Large-scale power</h3>
-            <p class="mt-3 text-[0.6875rem] leading-5" style="color:rgba(255,255,255,.55);">Scalable clean-energy infrastructure for larger requirements.</p>
-          </div>
-        </article>
-      </div>
-      <a href="#quote" class="mt-8 inline-flex rounded-full bg-lemon px-6 py-3 text-[0.625rem] font-bold text-ink">VIEW ALL SOLUTIONS →</a>
-    </div>
-  </section>
-
-  <!-- QUOTE -->
-  <section id="quote" class="py-28 md:py-32 relative overflow-hidden" style="background:#f8fafc;">
-
-    <!-- Decorative solar rooftop image — bottom-left corner (Grayscale Black & White) -->
-    <div class="absolute bottom-0 left-0 w-[30rem] max-w-[50%] h-[12rem] md:h-[15rem] pointer-events-none select-none z-0"
-         style="
-           opacity: 0.22;
-           background-image: url('assets/images/user_solar_rooftop.png');
-           background-repeat: no-repeat;
-           background-position: left bottom;
-           background-size: contain;
-           mix-blend-mode: multiply;
-           filter: grayscale(100%) contrast(1.1);
-         ">
-    </div>
-
-    <div class="container-x grid gap-12 md:grid-cols-[.9fr_1.1fr] relative z-10">
-      <div>
-        <div class="eyebrow reveal" style="color:#2563eb;">Get your free solar quote today</div>
-        <h2 class="mt-5 text-[2.625rem] md:text-[3.625rem] font-medium leading-[.96] tracking-[-.055em] reveal" style="color:#0f172a;">See what<br/><span style="color:#2563eb;">solar can do.</span></h2>
-        <p class="mt-7 max-w-[27.5rem] text-[0.75rem] leading-6 reveal" style="color:#64748b;">Tell us a little about your project. We'll help you understand the right system, expected savings and next steps.</p>
-      </div>
-      <div class="grid items-stretch gap-8 md:grid-cols-[1fr_.82fr]">
-        <form class="space-y-5" onsubmit="event.preventDefault(); alert('Thanks! Your quote request has been received.');">
-          <div class="grid grid-cols-2 gap-4">
-            <label class="block text-[0.625rem] uppercase tracking-[.12em] text-[#64748b]">First name<input required class="mt-2 w-full border-b-2 border-[#e2e8f0] bg-transparent py-3 text-sm font-medium placeholder:text-[#64748b]/80 outline-none transition focus:border-ink" /></label>
-            <label class="block text-[0.625rem] uppercase tracking-[.12em] text-[#64748b]">Last name<input required class="mt-2 w-full border-b-2 border-[#e2e8f0] bg-transparent py-3 text-sm font-medium placeholder:text-[#64748b]/80 outline-none transition focus:border-ink" /></label>
-          </div>
-          <label class="block text-[0.625rem] uppercase tracking-[.12em] text-[#64748b]">Email<input type="email" required class="mt-2 w-full border-b-2 border-[#e2e8f0] bg-transparent py-3 text-sm font-medium placeholder:text-[#64748b]/80 outline-none transition focus:border-ink" /></label>
-          <label class="block text-[0.625rem] uppercase tracking-[.12em] text-[#64748b]">Phone<input class="mt-2 w-full border-b-2 border-[#e2e8f0] bg-transparent py-3 text-sm font-medium placeholder:text-[#64748b]/80 outline-none transition focus:border-ink" /></label>
-          <label class="block text-[0.625rem] uppercase tracking-[.12em] text-[#64748b]">Tell us about your project<textarea rows="2" class="mt-2 w-full resize-none border-b-2 border-[#e2e8f0] bg-transparent py-3 text-sm font-medium placeholder:text-[#64748b]/80 outline-none transition focus:border-ink"></textarea></label>
-          <button class="w-full rounded-full bg-lemon py-4 text-[0.625rem] font-bold text-ink">REQUEST MY QUOTE →</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- COMMUNITY -->
-  <section class="py-24 text-white" style="background:#0f172a;">
-    <div class="container-x">
-      <div class="eyebrow text-white/55 reveal">Powering communities with renewable energy</div>
-      <h2 class="mt-5 text-[2.5rem] md:text-[3.375rem] font-medium leading-[.98] tracking-[-.05em] reveal">Real projects.<br/><span class="text-lemon">Real impact.</span></h2>
-      <div class="mt-12 grid gap-3 md:grid-cols-3">
-        <article class="group reveal"><div class="h-[14.375rem] overflow-hidden"><img class="photo transition duration-700 group-hover:scale-105" src="assets/images/image_10.jpg" alt="Solar project"></div><div class="border-b border-white/15 py-5"><div class="eyebrow text-white/45">Mangalore / 2026</div><h3 class="mt-2 text-lg">A rooftop built for tomorrow</h3></div></article>
-        <article class="group reveal"><div class="h-[14.375rem] overflow-hidden"><img class="photo transition duration-700 group-hover:scale-105" src="assets/images/image_6.jpg" alt="Solar array"></div><div class="border-b border-white/15 py-5"><div class="eyebrow text-white/45">Karnataka / 2026</div><h3 class="mt-2 text-lg">Cleaner energy for growing teams</h3></div></article>
-        <article class="group reveal"><div class="h-[14.375rem] overflow-hidden"><img class="photo transition duration-700 group-hover:scale-105" src="assets/images/image_11.jpg" alt="Solar landscape"></div><div class="border-b border-white/15 py-5"><div class="eyebrow text-white/45">South India / 2026</div><h3 class="mt-2 text-lg">Turning sunlight into savings</h3></div></article>
-      </div>
-      <a class="mt-8 inline-flex rounded-full bg-lemon px-6 py-3 text-[0.625rem] font-bold text-ink" href="#stories">SEE MORE STORIES →</a>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section id="stories" class="py-24" style="background:#f8fafc;">
-    <div class="container-x">
-      <div class="flex flex-col justify-between gap-5 md:flex-row md:items-end">
-        <div>
-          <div class="eyebrow reveal" style="color:#2563eb;">Trusted by thousands, loved by many</div>
-          <h2 class="mt-5 text-[2.5rem] md:text-[3.375rem] font-medium leading-[.98] tracking-[-.05em] reveal" style="color:#0f172a;">Good energy<br/><span style="color:#2563eb;">speaks for itself.</span></h2>
         </div>
-        <a href="#quote" class="rounded-full px-5 py-3 text-[0.625rem] font-bold" style="border:1px solid #0f172a; color:#0f172a;">BECOME A CUSTOMER →</a>
-      </div>
-      <div class="mt-12 grid gap-3 md:grid-cols-2">
-        <article class="grid grid-cols-[5.625rem_1fr] gap-5 border border-[#e2e8f0] p-5 reveal">
-          <img class="h-[5.625rem] w-[5.625rem] object-cover" src="assets/images/image_1.jpg" alt="Customer portrait">
-          <div><div class="text-lemon">★★★★★</div><p class="mt-3 text-[0.75rem] leading-5 text-[#64748b]">“The process was straightforward, the installation was neat, and we finally understand where our energy goes.”</p><div class="mt-4 text-[0.625rem] font-bold">PRIYA R.</div></div>
-        </article>
-        <article class="grid grid-cols-[5.625rem_1fr] gap-5 border border-[#e2e8f0] p-5 reveal">
-          <img class="h-[5.625rem] w-[5.625rem] object-cover" src="assets/images/image_3.jpg" alt="Customer portrait">
-          <div><div class="text-lemon">★★★★★</div><p class="mt-3 text-[0.75rem] leading-5 text-[#64748b]">“Our business had unused roof space for years. Now it is actively helping reduce our electricity costs.”</p><div class="mt-4 text-[0.625rem] font-bold">RAHUL K.</div></div>
-        </article>
+
+        <!-- Right Stacked Photos -->
+        <div class="grid gap-6">
+          <div class="relative h-[11.5rem] md:h-[15.25rem] rounded-2xl overflow-hidden border border-[#e2e8f0] shadow-md group">
+            <img src="assets/images/hero_panel_card.jpg" alt="Solar panel detail" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
+            <div class="absolute bottom-3 left-3 bg-[#0f172a]/90 backdrop-blur-md px-3 py-1.5 rounded-md text-white text-[0.6875rem] font-medium">
+              Monocrystalline Tier-1 Cells
+            </div>
+          </div>
+          <div class="relative h-[11.5rem] md:h-[15.25rem] rounded-2xl overflow-hidden border border-[#e2e8f0] shadow-md group">
+            <img src="assets/images/solar_rooftop_cutout.jpg" alt="Commercial solar rooftop" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" />
+            <div class="absolute bottom-3 left-3 bg-[#0f172a]/90 backdrop-blur-md px-3 py-1.5 rounded-md text-white text-[0.6875rem] font-medium">
+              Commercial & Industrial Array
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- INSIGHTS -->
-  <section id="insights" class="py-24" style="background:#0f172a;">
+  <!-- 8. TRUST / WHY CHOOSE US (Dark Navy Statement) -->
+  <section class="py-24 md:py-32 bg-[#0f172a] text-white relative overflow-hidden">
     <div class="container-x">
-      <div class="eyebrow reveal" style="color:#f8e84d;">Stay current with solar insights</div>
-      <div class="mt-5 flex flex-col justify-between gap-5 md:flex-row md:items-end">
-        <h2 class="text-[2.5rem] md:text-[3.375rem] font-medium leading-[.98] tracking-[-.05em] reveal text-white">Learn the<br/><span class="text-lemon">power story.</span></h2>
-        <a href="#" class="rounded-full px-5 py-3 text-[0.625rem] font-bold text-lemon" style="border:1px solid rgba(255,255,255,0.2);">VIEW ALL INSIGHTS →</a>
+      <div class="max-w-[48rem] mb-16">
+        <h2 class="text-[2.25rem] md:text-[3.25rem] font-medium leading-[1.08] tracking-[-.045em]">
+          Good solar isn't just about panels.<br/>
+          <span class="text-[#f8e84d]">It's about what happens after installation.</span>
+        </h2>
       </div>
-      <div class="mt-12 grid gap-4 md:grid-cols-3">
-        <article class="group reveal" style="background:#1e293b;"><div class="h-[13.125rem] overflow-hidden"><img class="photo transition duration-700 group-hover:scale-105" src="assets/images/image_7.jpg" alt="Solar panels"></div><div class="p-5"><div class="eyebrow" style="color:#f8e84d;">Guide / 6 min read</div><h3 class="mt-3 text-xl tracking-[-.03em] text-white">How solar panels work</h3><p class="mt-2 text-[0.6875rem] leading-5" style="color:rgba(255,255,255,.5);">A simple explanation of the technology behind everyday solar power.</p></div></article>
-        <article class="group reveal" style="background:#1e293b;"><div class="h-[13.125rem] overflow-hidden"><img class="photo transition duration-700 group-hover:scale-105" src="assets/images/image_13.jpg" alt="Solar installer"></div><div class="p-5"><div class="eyebrow" style="color:#f8e84d;">Advice / 5 min read</div><h3 class="mt-3 text-xl tracking-[-.03em] text-white">What makes a good solar installation?</h3><p class="mt-2 text-[0.6875rem] leading-5" style="color:rgba(255,255,255,.5);">The details that matter before, during and after installation.</p></div></article>
-        <article class="group reveal" style="background:#1e293b;"><div class="h-[13.125rem] overflow-hidden"><img class="photo transition duration-700 group-hover:scale-105" src="assets/images/image_10.jpg" alt="Solar technology"></div><div class="p-5"><div class="eyebrow" style="color:#f8e84d;">Technology / 7 min read</div><h3 class="mt-3 text-xl tracking-[-.03em] text-white">Battery storage explained</h3><p class="mt-2 text-[0.6875rem] leading-5" style="color:rgba(255,255,255,.5);">How batteries can help you use more of the clean energy you generate.</p></div></article>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        
+        <div class="p-8 rounded-2xl bg-[#1e293b] border border-white/10">
+          <div class="text-[0.75rem] font-bold text-[#f8e84d] tracking-widest uppercase mb-3">01 — Quality Components</div>
+          <h3 class="text-xl font-medium text-white">Reliable solar equipment</h3>
+          <p class="mt-2.5 text-[0.8125rem] leading-6 text-white/65">
+            Tier-1 high-efficiency panels, smart inverters, and heavy-duty anodised aluminium structures designed for durability.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-[#1e293b] border border-white/10">
+          <div class="text-[0.75rem] font-bold text-[#f8e84d] tracking-widest uppercase mb-3">02 — Professional Installation</div>
+          <h3 class="text-xl font-medium text-white">Neat & safety-focused</h3>
+          <p class="mt-2.5 text-[0.8125rem] leading-6 text-white/65">
+            Clean rooftop cable management, weatherproof conduits, and structural anchoring engineered for all seasons.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-[#1e293b] border border-white/10">
+          <div class="text-[0.75rem] font-bold text-[#f8e84d] tracking-widest uppercase mb-3">03 — Local Support</div>
+          <h3 class="text-xl font-medium text-white">Rapid Doorstep Service</h3>
+          <p class="mt-2.5 text-[0.8125rem] leading-6 text-white/65">
+            Experienced engineers available for prompt on-site surveys, grid synchronization, and subsidy paperwork.
+          </p>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-[#1e293b] border border-white/10">
+          <div class="text-[0.75rem] font-bold text-[#f8e84d] tracking-widest uppercase mb-3">04 — Long-Term Care</div>
+          <h3 class="text-xl font-medium text-white">Maintenance & cleaning support</h3>
+          <p class="mt-2.5 text-[0.8125rem] leading-6 text-white/65">
+            Proactive generation monitoring and ongoing panel maintenance to ensure your plant delivers maximum power.
+          </p>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- SUN TODAY -->
-  <section class="py-24" style="background:#f8fafc;">
-    <div class="container-x grid items-center gap-12 md:grid-cols-[.9fr_1.1fr]">
-      <div class="overflow-hidden reveal"><img class="photo h-[24.375rem]" src="assets/images/image_2.jpg" alt="Solar field"></div>
-      <div>
-        <div class="eyebrow reveal" style="color:#2563eb;">Unlock the power of the sun today</div>
-        <h2 class="mt-5 text-[2.5rem] md:text-[3.4375rem] font-medium leading-[.97] tracking-[-.05em] reveal" style="color:#0f172a;">Your next<br/><span style="color:#2563eb;">energy move.</span></h2>
-        <p class="mt-6 max-w-[31.25rem] text-[0.75rem] leading-6 reveal" style="color:#64748b;">The sun is already doing the hard work. Let your roof, your land, or your business start working smarter too.</p>
-        <ul class="mt-7 space-y-3 text-[0.75rem]" style="color:#0f172a;">
-          <li class="flex gap-3 reveal"><span class="text-lemon">●</span> Personalised system design</li>
-          <li class="flex gap-3 reveal"><span class="text-lemon">●</span> Professional installation</li>
-          <li class="flex gap-3 reveal"><span class="text-lemon">●</span> Ongoing support and monitoring</li>
-        </ul>
-        <a href="#quote" class="mt-8 inline-flex rounded-full bg-lemon px-6 py-3 text-[0.625rem] font-bold text-ink">START YOUR SOLAR JOURNEY →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="pt-20 text-white" style="background:#0f172a;">
+  <!-- 9. TESTIMONIALS (Minimal & Authentic) -->
+  <section id="stories" class="py-24 md:py-32 bg-[#f8fafc] relative overflow-hidden">
     <div class="container-x">
-      <div class="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div class="max-w-[42rem] mx-auto text-center mb-16">
+        <div class="eyebrow text-[#2563eb]">Customer Stories</div>
+        <h2 class="mt-3 text-[2.25rem] md:text-[3rem] font-medium leading-[1.05] tracking-[-.045em] text-[#0f172a]">
+          “The installation was clean, professional and our electricity bill has reduced significantly.”
+        </h2>
+        <div class="mt-4 text-xs font-bold text-[#0f172a] uppercase tracking-wider">— Verified Homeowner</div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        
+        <div class="bg-white p-7 rounded-2xl border border-[#e2e8f0] shadow-sm">
+          <div class="text-[#f8e84d] text-sm">★★★★★</div>
+          <p class="mt-3 text-[0.8125rem] leading-6 text-[#64748b]">
+            “Our ₹4,200 monthly bill dropped to just ₹380 with net-metering. The team handled our PM Surya Ghar subsidy smoothly.”
+          </p>
+          <div class="mt-5 text-xs font-bold text-[#0f172a]">Santosh Nayak — Residential Villa</div>
+        </div>
+
+        <div class="bg-white p-7 rounded-2xl border border-[#e2e8f0] shadow-sm">
+          <div class="text-[#f8e84d] text-sm">★★★★★</div>
+          <p class="mt-3 text-[0.8125rem] leading-6 text-[#64748b]">
+            “During heavy winds and rain, the structure held rock solid. Highly professional installation and zero roof leaks.”
+          </p>
+          <div class="mt-5 text-xs font-bold text-[#0f172a]">Ganesh Bhat — Homeowner</div>
+        </div>
+
+        <div class="bg-white p-7 rounded-2xl border border-[#e2e8f0] shadow-sm">
+          <div class="text-[#f8e84d] text-sm">★★★★★</div>
+          <p class="mt-3 text-[0.8125rem] leading-6 text-[#64748b]">
+            “Arka Solar Care made the transition to solar effortless. Transparent pricing and dependable support whenever needed.”
+          </p>
+          <div class="mt-5 text-xs font-bold text-[#0f172a]">Praveen Shetty — Commercial Rooftop</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. FINAL CTA (Cinematic Full-Width) -->
+  <section id="quote" class="relative py-32 md:py-40 bg-[#0f172a] text-white text-center overflow-hidden">
+    <div class="absolute inset-0 z-0">
+      <img src="assets/images/udupi_biz_bg.jpg" alt="Solar powered building" class="w-full h-full object-cover object-center opacity-30" />
+      <div class="absolute inset-0 bg-[#0f172a]/80"></div>
+    </div>
+
+    <div class="container-x relative z-10 max-w-[42rem] mx-auto">
+      <div class="eyebrow text-[#f8e84d] mb-4">Start Your Clean Energy Journey</div>
+      <h2 class="text-[2.625rem] md:text-[3.75rem] font-medium leading-[1.02] tracking-[-.045em]">
+        Ready to make your home solar?
+      </h2>
+      <p class="mt-6 text-[0.875rem] md:text-[1rem] leading-6 text-white/80 max-w-[32rem] mx-auto">
+        Get a free consultation and find the right solar solution for your home.
+      </p>
+
+      <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="https://wa.me/919876543210?text=Hi%20Arka%20Solar%20Care,%20I%20would%20like%20to%20get%20a%20free%20solar%20quote" 
+           target="_blank"
+           class="rounded-full bg-[#f8e84d] px-8 py-4 text-xs font-bold text-[#0f172a] tracking-wider uppercase shadow-xl hover:scale-105 transition">
+          GET A FREE SOLAR QUOTE →
+        </a>
+        <a href="#calculator" class="text-xs font-semibold text-white/80 hover:text-white transition flex items-center gap-1.5">
+          <span>Talk to an expert</span> <span>→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. COMPACT FOOTER -->
+  <footer class="pt-16 pb-12 text-white bg-[#0f172a] border-t border-white/10">
+    <div class="container-x">
+      <div class="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.3fr] mb-12">
         <div>
           <a href="#" class="flex items-center gap-2.5">
-            <img src="logo.png" alt="Arka Logo" class="h-10 w-auto" />
+            <img src="logo.png" alt="Arka Logo" class="h-9 w-auto" />
             <span class="text-white text-[1.125rem] font-semibold tracking-[-.04em]">Arka Solar Care</span>
           </a>
-          <p class="mt-5 max-w-[16.25rem] text-[0.6875rem] leading-5 text-white/50">Clean energy systems for homes, businesses and communities.</p>
-          <div class="mt-6 flex gap-3 text-xs text-white/50"><span>in</span><span>ig</span><span>yt</span></div>
-        </div>
-        <div><div class="eyebrow text-white/35">Explore</div><div class="mt-5 space-y-3 text-[0.6875rem] text-white/65"><a class="block hover:text-white" href="#solutions">Solutions</a><a class="block hover:text-white" href="#stories">Stories</a><a class="block hover:text-white" href="#insights">Insights</a></div></div>
-        <div><div class="eyebrow text-white/35">Company</div><div class="mt-5 space-y-3 text-[0.6875rem] text-white/65"><a class="block" href="#">About</a><a class="block" href="#">Careers</a><a class="block" href="#">Contact</a></div></div>
-        <div><div class="eyebrow text-white/35">Support</div><div class="mt-5 space-y-3 text-[0.6875rem] text-white/65"><a class="block" href="#">FAQs</a><a class="block" href="#">Warranty</a><a class="block" href="#">Privacy</a></div></div>
-      </div>
-
-
-
-      <!-- LOCATION / MAP SECTION -->
-      <div class="mt-14 pt-10 border-t border-white/10 grid gap-8 md:grid-cols-[1fr_1.3fr] items-center">
-        <div>
-          <div class="eyebrow text-lemon flex items-center gap-2">
-            <span>📍</span> <span>Our Location</span>
-          </div>
-          <h3 class="mt-3 text-xl font-medium tracking-tight text-white">Visit Our Office & Experience Center</h3>
-          <p class="mt-3 text-[0.75rem] leading-6 text-white/60 max-w-[24rem]">
-            Explore live demonstration solar setups, meet our clean energy specialists, and plan your transition to solar.
+          <p class="mt-4 max-w-[16rem] text-[0.75rem] leading-6 text-white/60">
+            Dependable, high-efficiency rooftop solar systems engineered for modern Indian homes & commercial properties.
           </p>
-          <div class="mt-5">
-            <a href="https://www.google.com/maps?ll=28.569049,77.216194&z=16&t=m&hl=en&gl=IN&mapclient=embed&cid=13601668326741511446" 
-               target="_blank" 
-               rel="noopener noreferrer"
-               class="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[0.6875rem] font-semibold text-white bg-white/10 hover:bg-white/20 border border-white/15 transition-all">
-              <span>Open in Google Maps</span>
-              <span>↗</span>
-            </a>
+        </div>
+
+        <div>
+          <div class="eyebrow text-white/40 mb-4">Explore</div>
+          <div class="space-y-2.5 text-xs text-white/70">
+            <a class="block hover:text-white" href="#why">Why Solar</a>
+            <a class="block hover:text-white" href="#how-it-works">How it Works</a>
+            <a class="block hover:text-white" href="#calculator">Savings Calculator</a>
+            <a class="block hover:text-white" href="#solutions">Projects</a>
           </div>
         </div>
 
-        <div class="overflow-hidden rounded-2xl border border-white/15 shadow-2xl relative h-[14rem] md:h-[16rem] w-full bg-[#1e293b]">
+        <div>
+          <div class="eyebrow text-white/40 mb-4">Contact</div>
+          <div class="space-y-2.5 text-xs text-white/70">
+            <p>📍 Karnataka, India</p>
+            <p>📞 +91 98765 43210</p>
+            <p>✉️ info@arkasolarcare.com</p>
+          </div>
+        </div>
+
+        <!-- Mini Map Card -->
+        <div class="overflow-hidden rounded-xl border border-white/15 shadow-lg relative h-36 w-full bg-[#1e293b]">
           <iframe
-            src="https://maps.google.com/maps?ll=28.569049,77.216194&z=16&t=m&hl=en&gl=IN&cid=13601668326741511446&output=embed"
+            src="https://maps.google.com/maps?ll=13.340880,74.742142&z=12&t=m&hl=en&gl=IN&output=embed"
             width="100%"
             height="100%"
             style="border:0;"
             allowfullscreen=""
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Arka Solar Care Location Map">
+            title="Service Hub">
           </iframe>
         </div>
       </div>
 
-      <div class="mt-12 flex flex-col justify-between gap-4 border-t border-white/10 py-6 text-[0.5625rem] text-white/35 md:flex-row">
-        <span>© 2026 Arka Solar Care. All rights reserved.</span><span>Clean energy, thoughtfully delivered.</span>
+      <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center text-[0.6875rem] text-white/40 gap-3">
+        <span>© 2026 Arka Solar Care. All rights reserved.</span>
+        <span>Powering a greener, energy-independent future.</span>
       </div>
     </div>
   </footer>
@@ -582,253 +895,16 @@
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = window.matchMedia('(pointer: coarse)').matches;
-  const isMobile = window.matchMedia('(max-width: 47.9375rem)').matches;
 
-  // ---------- HERO / PAGE INTRO ----------
+  // ---------- HERO INTRO ----------
   const hero = gsap.timeline({ defaults: { ease: 'power4.out' } });
   hero.from('.hero-kicker', { y: 24, opacity: 0, duration: .55 })
       .from('.hero-title', { y: 70, opacity: 0, duration: 1.05 }, '-=.25')
       .from('.hero-copy', { y: 25, opacity: 0, duration: .7 }, '-=.62')
       .from('.hero-copy + div', { y: 24, opacity: 0, duration: .65 }, '-=.48')
-      .from('.hero-art', { x: 110, opacity: 0, duration: 1.25 }, '-=1')
-      .from('.stat-card', { y: 42, opacity: 0, rotateX: -10, stagger: .09, duration: .65 }, '-=.62');
+      .from('.stat-card', { y: 42, opacity: 0, stagger: .09, duration: .65 }, '-=.62');
 
-
-
-  // ---------- GLOBAL SCROLL REVEALS ----------
-  // Apply the hidden state only after GSAP is ready. This prevents headings from
-  // becoming permanently invisible when the CDN/script loads late or fails.
-  document.documentElement.classList.add('js-ready');
-  const revealItems = gsap.utils.toArray('.reveal');
-  gsap.set(revealItems, { opacity: 0, y: 38, filter: 'blur(0.3125rem)' });
-
-  revealItems.forEach((el, i) => {
-    gsap.to(el, {
-      opacity: 1, y: 0, filter: 'blur(0rem)', duration: .78,
-      delay: (i % 4) * .035, ease: 'power3.out',
-      clearProps: 'filter,transform',
-      scrollTrigger: { trigger: el, start: 'top 88%', once: true, invalidateOnRefresh: true }
-    });
-  });
-
-  // Highlight words animate independently, without controlling the parent heading opacity.
-  gsap.utils.toArray('h2').forEach((heading) => {
-    const highlight = heading.querySelector('span');
-    if (!highlight) return;
-    gsap.fromTo(highlight, { y: 10, opacity: 0.35 }, {
-      y: 0, opacity: 1, duration: .6, ease: 'power3.out',
-      scrollTrigger: { trigger: heading, start: 'top 86%', once: true }
-    });
-  });
-
-  // Recalculate trigger positions after remote images/fonts finish loading.
-  window.addEventListener('load', () => ScrollTrigger.refresh());
-  setTimeout(() => ScrollTrigger.refresh(), 500);
-
-  // ---------- MAGNETIC BUTTONS ----------
-  if (!isTouch && !reduceMotion) {
-    document.querySelectorAll('.magnetic').forEach((el) => {
-      const strength = 0.22;
-      el.addEventListener('mousemove', (e) => {
-        const r = el.getBoundingClientRect();
-        const x = e.clientX - (r.left + r.width / 2);
-        const y = e.clientY - (r.top + r.height / 2);
-        gsap.to(el, { x: x * strength, y: y * strength, duration: .35, ease: 'power3.out', overwrite: true });
-      });
-      el.addEventListener('mouseleave', () => gsap.to(el, { x: 0, y: 0, duration: .65, ease: 'elastic.out(1, .35)' }));
-    });
-  }
-
-  // ---------- 3D CARD TILT + LIGHT FOLLOW ----------
-  if (!isTouch && !reduceMotion) {
-    document.querySelectorAll('.interactive-card').forEach((card) => {
-      const shine = document.createElement('span');
-      shine.className = 'card-shine';
-      card.appendChild(shine);
-
-      card.addEventListener('mousemove', (e) => {
-        const r = card.getBoundingClientRect();
-        const px = (e.clientX - r.left) / r.width;
-        const py = (e.clientY - r.top) / r.height;
-        const rx = (py - .5) * -5;
-        const ry = (px - .5) * 6;
-        card.style.setProperty('--mx', `${px * 100}%`);
-        card.style.setProperty('--my', `${py * 100}%`);
-        gsap.to(card, { rotateX: rx, rotateY: ry, y: -7, scale: 1.018, duration: .45, ease: 'power2.out', overwrite: true });
-        gsap.to(shine, { x: `${(px - .5) * 80}%`, opacity: 1, duration: .5, ease: 'power2.out', overwrite: true });
-      });
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, { rotateX: 0, rotateY: 0, y: 0, scale: 1, duration: .7, ease: 'elastic.out(1, .5)' });
-        gsap.to(shine, { x: '-70%', opacity: 0, duration: .5, ease: 'power2.out' });
-      });
-    });
-  }
-
-  // ---------- IMAGE HOVER PARALLAX ----------
-  if (!reduceMotion) {
-    document.querySelectorAll('.group').forEach((group) => {
-      const img = group.querySelector('img');
-      if (!img) return;
-      group.addEventListener('mousemove', (e) => {
-        if (isTouch) return;
-        const r = group.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - .5;
-        const y = (e.clientY - r.top) / r.height - .5;
-        gsap.to(img, { x: x * 10, y: y * 8, scale: 1.07, duration: .55, ease: 'power2.out', overwrite: true });
-      });
-      group.addEventListener('mouseleave', () => gsap.to(img, { x: 0, y: 0, scale: 1, duration: .8, ease: 'power3.out' }));
-    });
-  }
-
-  // ---------- BUTTON RIPPLE ----------
-  document.querySelectorAll('a.rounded-full, button').forEach((el) => {
-    el.addEventListener('click', (e) => {
-      if (reduceMotion) return;
-      const r = el.getBoundingClientRect();
-      const size = Math.max(r.width, r.height) * 1.8;
-      const ripple = document.createElement('span');
-      ripple.className = 'ripple';
-      ripple.style.width = ripple.style.height = size + 'px';
-      ripple.style.left = (e.clientX - r.left - size / 2) + 'px';
-      ripple.style.top = (e.clientY - r.top - size / 2) + 'px';
-      el.appendChild(ripple);
-      gsap.fromTo(ripple, { scale: 0, opacity: .4 }, { scale: 1, opacity: 0, duration: .65, ease: 'power2.out', onComplete: () => ripple.remove() });
-    });
-  });
-
-
-
-  // ---------- NAV HOVER UNDERLINE ----------
-  document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('mouseenter', () => gsap.to(link, { y: -2, duration: .25, ease: 'power2.out' }));
-    link.addEventListener('mouseleave', () => gsap.to(link, { y: 0, duration: .35, ease: 'power2.out' }));
-  });
-
-  // ---------- IMAGE / CONTENT PARALLAX ON SCROLL ----------
-  if (!reduceMotion) {
-    gsap.utils.toArray('.photo').forEach(img => {
-      gsap.fromTo(img, { yPercent: -3 }, {
-        yPercent: 3, ease: 'none',
-        scrollTrigger: { trigger: img, start: 'top bottom', end: 'bottom top', scrub: 1.2 }
-      });
-    });
-  }
-
-  // ---------- STAT COUNTERS ----------
-  document.querySelectorAll('.stat-card').forEach(card => {
-    const number = card.querySelector('.text-2xl');
-    if (!number) return;
-    const original = number.innerText;
-    const match = original.match(/(\d+)/);
-    if (!match) return;
-    const target = Number(match[1]);
-    const suffix = original.replace(match[1], '');
-    const obj = { val: 0 };
-    gsap.to(obj, {
-      val: target, duration: 1.5, delay: .6, ease: 'power2.out',
-      onUpdate: () => number.innerText = Math.round(obj.val) + suffix,
-      scrollTrigger: { trigger: card, start: 'top 92%', once: true }
-    });
-  });
-
-  // ---------- ACTIVE SECTION NAV ----------
-  ['why','solutions','stories','insights','quote'].forEach(id => {
-    const section = document.getElementById(id);
-    if (!section) return;
-    ScrollTrigger.create({
-      trigger: section, start: 'top 45%', end: 'bottom 45%',
-      onEnter: () => highlight(id), onEnterBack: () => highlight(id)
-    });
-  });
-  function highlight(id) {
-    document.querySelectorAll('.nav-link').forEach(a => a.classList.remove('text-lemon'));
-    const active = document.querySelector(`.nav-link[href="#${id}"]`);
-    if (active) gsap.to(active, { color: '#f8e84d', duration: .2 });
-  }
-
-  // ---------- STICKY NAV + MOBILE MENU ----------
-  const mainNavWrapper = document.getElementById('mainNavWrapper');
-  const mainNav = document.getElementById('mainNav');
-  const menuToggle = document.getElementById('menuToggle');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const mobilePanel = mobileMenu?.querySelector('.mobile-menu-panel');
-  const mobileBackdrop = mobileMenu?.querySelector('.mobile-menu-backdrop');
-  let menuOpen = false;
-
-  function setScrolledNav() {
-    if (!mainNavWrapper) return;
-    const scrolled = window.scrollY > 90;
-    mainNavWrapper.classList.toggle('is-scrolled', scrolled);
-  }
-  setScrolledNav();
-  window.addEventListener('scroll', setScrolledNav, { passive: true });
-
-  function openMobileMenu() {
-    if (!mobileMenu || menuOpen) return;
-    menuOpen = true;
-    mobileMenu.classList.add('open');
-    menuToggle.classList.add('active');
-    menuToggle.setAttribute('aria-expanded', 'true');
-    menuToggle.setAttribute('aria-label', 'Close menu');
-    document.body.style.overflow = 'hidden';
-    if (window.gsap) {
-      gsap.to(mobileBackdrop, { opacity: 1, duration: .35, ease: 'power2.out' });
-      gsap.to(mobilePanel, { x: 0, duration: .65, ease: 'power4.out' });
-      gsap.fromTo('.mobile-link', { x: 30, opacity: 0 }, { x: 0, opacity: 1, stagger: .07, duration: .45, delay: .18, ease: 'power3.out' });
-    }
-  }
-
-  function closeMobileMenu() {
-    if (!mobileMenu || !menuOpen) return;
-    menuOpen = false;
-    menuToggle.classList.remove('active');
-    menuToggle.setAttribute('aria-expanded', 'false');
-    menuToggle.setAttribute('aria-label', 'Open menu');
-    document.body.style.overflow = '';
-    if (window.gsap) {
-      gsap.to(mobileBackdrop, { opacity: 0, duration: .25, ease: 'power2.in' });
-      gsap.to(mobilePanel, { x: '105%', duration: .45, ease: 'power3.in', onComplete: () => mobileMenu.classList.remove('open') });
-    } else mobileMenu.classList.remove('open');
-  }
-
-  menuToggle?.addEventListener('click', () => menuOpen ? closeMobileMenu() : openMobileMenu());
-  mobileBackdrop?.addEventListener('click', closeMobileMenu);
-  mobileMenu?.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', closeMobileMenu));
-  window.addEventListener('keydown', e => { if (e.key === 'Escape') closeMobileMenu(); });
-  window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMobileMenu(); });
-
-  // ---------- TRUST SECTION — CLEAN REVEAL GSAP ----------
-  const trustSection = document.getElementById('why');
-  if (trustSection) {
-    gsap.set('#trust-eyebrow', { opacity: 0, y: 30 });
-    gsap.set('#trust-heading', { opacity: 0, y: 40 });
-    gsap.set('.trust-card-anim', { opacity: 0, y: 45 });
-
-    ScrollTrigger.create({
-      trigger: trustSection,
-      start: 'top 82%',
-      once: true,
-      onEnter: () => {
-        gsap.to('#trust-eyebrow', {
-          opacity: 1, y: 0,
-          duration: 0.65, ease: 'power3.out'
-        });
-        gsap.to('#trust-heading', {
-          opacity: 1, y: 0,
-          duration: 0.85, delay: 0.1, ease: 'power4.out'
-        });
-        gsap.to('.trust-card-anim', {
-          opacity: 1, y: 0,
-          duration: 0.75, stagger: 0.14, delay: 0.22,
-          ease: 'power3.out',
-          clearProps: 'transform'
-        });
-      }
-    });
-  }
-
-  // ---------- TYPEWRITER EFFECT ----------
-
+  // ---------- TYPEWRITER ----------
   (function () {
     const phrases = [
       'Clean Energy.',
@@ -854,19 +930,104 @@
       let delay = isDeleting ? 55 : 105;
 
       if (!isDeleting && charIndex === current.length) {
-        delay = 2200;             // pause after fully typed
+        delay = 2200;
         isDeleting = true;
       } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         phraseIndex = (phraseIndex + 1) % phrases.length;
-        delay = 350;              // pause before next phrase
+        delay = 350;
       }
       setTimeout(tick, delay);
     }
-
-    // Start after the hero GSAP intro finishes
     setTimeout(tick, 1400);
   })();
+
+  // ---------- STICKY NAV ----------
+  const mainNavWrapper = document.getElementById('mainNavWrapper');
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobilePanel = mobileMenu?.querySelector('.mobile-menu-panel');
+  const mobileBackdrop = mobileMenu?.querySelector('.mobile-menu-backdrop');
+  let menuOpen = false;
+
+  function setScrolledNav() {
+    if (!mainNavWrapper) return;
+    mainNavWrapper.classList.toggle('is-scrolled', window.scrollY > 90);
+  }
+  setScrolledNav();
+  window.addEventListener('scroll', setScrolledNav, { passive: true });
+
+  function openMobileMenu() {
+    if (!mobileMenu || menuOpen) return;
+    menuOpen = true;
+    mobileMenu.classList.add('open');
+    menuToggle.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    gsap.to(mobileBackdrop, { opacity: 1, duration: .35 });
+    gsap.to(mobilePanel, { x: 0, duration: .65, ease: 'power4.out' });
+  }
+
+  function closeMobileMenu() {
+    if (!mobileMenu || !menuOpen) return;
+    menuOpen = false;
+    menuToggle.classList.remove('active');
+    document.body.style.overflow = '';
+    gsap.to(mobileBackdrop, { opacity: 0, duration: .25 });
+    gsap.to(mobilePanel, { x: '105%', duration: .45, onComplete: () => mobileMenu.classList.remove('open') });
+  }
+
+  menuToggle?.addEventListener('click', () => menuOpen ? closeMobileMenu() : openMobileMenu());
+  mobileBackdrop?.addEventListener('click', closeMobileMenu);
+  mobileMenu?.querySelectorAll('.mobile-link').forEach(link => link.addEventListener('click', closeMobileMenu));
+
+  // ---------- INTERACTIVE RESIDENTIAL SOLAR CALCULATOR ----------
+  const billSlider = document.getElementById('bill-slider');
+  const billDisplay = document.getElementById('bill-display');
+  const calcSystem = document.getElementById('calc-system');
+  const calcSavings = document.getElementById('calc-savings');
+  const homeButtons = document.querySelectorAll('.home-type-btn');
+
+  let homeMultiplier = 1.0;
+
+  function updateCalculator() {
+    if (!billSlider) return;
+    const bill = Number(billSlider.value);
+    billDisplay.textContent = `₹ ${bill.toLocaleString('en-IN')}`;
+
+    // Estimated system size: roughly 1kW per ₹1,000 monthly bill
+    let systemKw = Math.max(1, Math.round((bill / 1000) * homeMultiplier));
+    let savings = Math.round(bill * 0.82);
+
+    calcSystem.textContent = `${systemKw} kW`;
+    calcSavings.innerHTML = `₹${savings.toLocaleString('en-IN')} <span class="text-xs font-normal text-white/60">/ month</span>`;
+  }
+
+  billSlider?.addEventListener('input', updateCalculator);
+
+  homeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      homeButtons.forEach(b => {
+        b.classList.remove('border-[#f8e84d]', 'bg-[#f8e84d]/10', 'text-[#f8e84d]');
+        b.classList.add('border-white/15', 'text-white');
+      });
+      btn.classList.add('border-[#f8e84d]', 'bg-[#f8e84d]/10', 'text-[#f8e84d]');
+      btn.classList.remove('border-white/15', 'text-white');
+
+      const type = btn.getAttribute('data-type');
+      if (type === '2bhk') homeMultiplier = 0.85;
+      else if (type === '3bhk') homeMultiplier = 1.0;
+      else if (type === '4bhk') homeMultiplier = 1.35;
+
+      updateCalculator();
+    });
+  });
+
+  updateCalculator();
+
+  // Initialize Lucide Icons
+  if (window.lucide) {
+    lucide.createIcons();
+  }
 </script>
 </body>
 </html>
